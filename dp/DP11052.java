@@ -9,23 +9,26 @@ public class DP11052 {
 		BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
 		
 		int n = Integer.parseInt(br.readLine()); // 카드의 개수 입력받기
-		
-		// 카드의 개수가 i개인 카드팩의 가격과 카드팩의 카드 1개당 가치를 저장
-		float[][] p_val = new float[2][n+1];
+		int[] price = new int[n+1]; // 카드의 개수가 n인 카드팩의 가격을 저장
+		int[] dp = new int[n+1]; // 카드 n개를 살 때 지불하는 최대금액을 저장
 		
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		for(int i = 1; i <= n; i++) {
-			p_val[0][i] = Float.parseFloat(st.nextToken()); // 카드팩의 가격과
-			p_val[1][i] = p_val[0][i] / i; // 카드 1개당 가치를 저장
+			price[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		Arrays.sort();
-		
-		for(int i = 0; i <= 1; i++) {
-			for(int j = 0 ; j <= n; j++) {
-				System.out.print(p_val[i][j] + " ");
+		for(int i = 1; i <= n; i++) {
+			for(int j = 1; j <= i; j++) {
+				if(i == 1) {
+					dp[i] = price[i];
+				}
+				else {
+					// i장 있는 카드팩을 사고 i-1장을 최대로 해서 지불하거나, 2장 있는 카드팩을 사고 i-2장을 최대로 지불해서 사거나... i장 있는 카드팩을 사거나
+					dp[i] = Math.max(dp[i], price[j] + dp[i-j]);
+				}
 			}
-			System.out.println();
 		}
+		
+		System.out.print(dp[n]);
 	}
 }
