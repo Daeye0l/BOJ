@@ -24,9 +24,9 @@ public class GR16953 {
 					b /= 2; // b를 2로 나누고
 					cnt++; // 카운트 증가
 				}
-				else if(b % 10 == 1) {
-					b /= 10;
-					cnt++;
+				else if(b % 10 == 1) { // b의 1의 자리가 1이라면
+					b /= 10; // 1의 자리를 버리고
+					cnt++; // 카운트 증가
 				}
 				else {
 					System.out.print(-1);
