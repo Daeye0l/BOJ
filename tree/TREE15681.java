@@ -35,7 +35,7 @@ public class TREE15681 {
 			connect.get(v).add(u);
 		}
 		
-		// r을 루트로 하는 트리를 구성하고 각 정점을 루트로 하는 서브트리에 속한 정점의 수 구하기
+		// r을 루트로 하는 트리를 구성하고각 정점을 루트로 하는 서브트리에 속한 정점의 수 구하기
 		makeTree(r, -1);
 		countSubtreeNode(r);
 		
